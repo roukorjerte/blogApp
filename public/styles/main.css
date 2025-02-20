@@ -1,3 +1,7 @@
+body{
+    font-family: "Lexend Deca", serif;
+}
+
 .bg-black-custom{
     background-color: #232536;
 }
@@ -10,6 +14,18 @@
     color: #FFC107 !important;
 }
 
+@keyframes parallaxMove {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
 #header-bg{
     background-image: url('../media/bg-img.png');
     background-size: cover;
@@ -18,6 +34,7 @@
     height: 60vh;
     position: relative;
     z-index: 0;
+    animation: parallaxMove 100s infinite linear;
 
 }
 
@@ -37,3 +54,43 @@
     position: relative;
     z-index: 1;
 }
+
+.break-word{
+    word-wrap: break-word !important;
+}
+.all-posts-img{
+    height: 180px;
+    width: 100%;
+    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
+    object-position: center;
+}
+
+.featured-posts-img{
+    width: 100%; 
+    height: 350px;
+    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
+    object-position: center;/* 40% меньше */
+}
+  
+@media (max-width: 992px) {
+    .featured-posts-img {
+      width: 350px;
+      height: auto; /* 40% меньше */
+    }
+}
+
+@media (max-width: 765px) {
+    .featured-posts-img {
+        width: 515px;
+        height: auto; /* 40% меньше */
+        /* 50% меньше */
+    }
+  }
+  /* Для экранов с шириной меньше 576px (очень маленькие экраны) */
+@media (max-width: 576px) {
+    .featured-posts-img {
+        width: 100%;
+        height: auto; /* 40% меньше */
+        /* 50% меньше */
+    }
+  }
