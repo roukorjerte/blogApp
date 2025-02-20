@@ -1,0 +1,39 @@
+.bg-black-custom{
+    background-color: #232536;
+}
+
+.bold-custom{
+    font-weight: bold !important;
+}
+
+.text-yellow-custom{
+    color: #FFC107 !important;
+}
+
+#header-bg{
+    background-image: url('../media/bg-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60vh;
+    position: relative;
+    z-index: 0;
+
+}
+
+#header-bg::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(89, 46, 169, 0.6); /* Желтая пелена с прозрачностью */
+    z-index: -1; /* Обеспечит, что пелена будет поверх фона */
+    backdrop-filter: blur(3px);
+}
+
+#header-bg > * {
+    position: relative;
+    z-index: 1;
+}
