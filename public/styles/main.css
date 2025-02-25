@@ -45,8 +45,8 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(89, 46, 169, 0.6); /* Желтая пелена с прозрачностью */
-    z-index: -1; /* Обеспечит, что пелена будет поверх фона */
+    background-color: rgba(89, 46, 169, 0.6); 
+    z-index: -1;
     backdrop-filter: blur(3px);
 }
 
@@ -60,37 +60,107 @@ body{
 }
 .all-posts-img{
     height: 180px;
-    width: 100%;
-    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
+    width: 180px;
+    object-fit: cover;
     object-position: center;
 }
 
 .featured-posts-img{
     width: 100%; 
     height: 350px;
-    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
-    object-position: center;/* 40% меньше */
+    object-fit: cover;
+    object-position: center;
 }
-  
-@media (max-width: 992px) {
-    .featured-posts-img {
-      width: 350px;
-      height: auto; /* 40% меньше */
+
+.all-post-page-img{
+    width: 250px; 
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+    .all-post-page-img{
+        width: 200px; 
+        height: 250px;
     }
 }
 
-@media (max-width: 765px) {
+/* Medium screens */
+@media (max-width: 993px) {
+    .featured-posts-img {
+      width: 350px;
+      height: auto;
+    }
+    .all-post-page-img{
+        width: 200px; 
+        height: 250px;
+    }
+    .all-posts-img{
+        width: 100%;
+    }
+}
+
+/* small screens */
+@media (max-width: 768px) {
     .featured-posts-img {
         width: 515px;
-        height: auto; /* 40% меньше */
-        /* 50% меньше */
+        height: auto; 
     }
-  }
-  /* Для экранов с шириной меньше 576px (очень маленькие экраны) */
+    .all-post-page-img{
+        width: 250px; 
+        height: 250px;
+    }
+}
+
+/* extra small screens */
 @media (max-width: 576px) {
     .featured-posts-img {
         width: 100%;
-        height: auto; /* 40% меньше */
-        /* 50% меньше */
+        height: auto; 
     }
-  }
+    .all-post-page-img{
+        width: 100%; 
+        height: 250px;
+    }
+}
+
+.timestamp{
+    color: rgb(89, 46, 169);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.all-posts-heading{
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
+
+html, body {
+    height: 100%;
+}
+  
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+  
+main.content {
+    overflow: auto;
+}
+
+/* .create-post-text-field{
+    height: 50vh;
+}
+
+.form-control::placeholder {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+}
+
+.form-control{
+    position: relative;
+} */

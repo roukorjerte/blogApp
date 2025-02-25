@@ -9,8 +9,12 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.get("/contact", (req, res) => {
-  res.render("contact.ejs");
+app.get("/all-posts", (req, res) => {
+  res.render("allPosts.ejs");
+});
+
+app.get("/create", (req, res) => {
+  res.render("create.ejs");
 });
 
 app.get("/about", (req, res) => {
