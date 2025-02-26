@@ -1,83 +1,28 @@
 <%- include("partials/header.ejs") %>
 
+<% articles.forEach(article => { %>
    <div class="container mt-5 content create-box">
-        <div class="col-md-12 col-lg-12">
+        <div class="col-md-12 col-lg-12 ">
             <article class="mb-5">
-                <div class="row">
+                <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="post-type all-post-page-img">
-                            <a href="#"><img class="all-post-page-img" src="/media/black-cat-placeholder.jpg" alt="image post"></a>
+                            <a href="#"><img class="all-post-page-img" src="<%= article.image %>" alt="image post"></a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
                         <div class="timestamp">
-                            <p>January 15, 2024</p>
+                            <p><%= article.timestamp %></p>
                         </div>
                         <div class="caption">
-                            <h2><a class="display-6 link-body-emphasis mb-1 all-posts-heading" href="#">Normal lorem ipsum</a></h2>
-                            <p class="text-secondary"> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur blandit magna sit amet euismod tincidunt. Quisque a rhoncus tellus, non volutpat elit. Nullam cursus turpis ut tincidunt mollis. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at augue libero.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            
-            <article class="mb-5">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <div class="post-type all-post-page-img">
-                            <a href="#"><img class="all-post-page-img" src="/media/close-cat-placeholder.jpg" alt="image post"></a>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                        <div class="timestamp">
-                            <p>January 15, 2024</p>
-                        </div>
-                        <div class="caption">
-                            <h2><a class="display-6 link-body-emphasis mb-1 all-posts-heading" href="#">Kitten Lorem Ipsum</a></h2>
-                            <p class="text-secondary"> Scratch at door to be let outside, get let out then scratch at door immmediately after to be let back in meowsiers eat and than sleep on your face yet what a cat-ass-trophy!, but touch my tail, i shred your hand purrrr claws in the eye of the beholder yet catch mouse and gave it as a present. Gate keepers of hell lick the curtain just to be annoying but catasstrophe ignore the squirrels, you'll never catch them anyway. Unwrap toilet paper only use one corner of the litter box i vomit</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-5">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <div class="post-type all-post-page-img">
-                            <a href="#"><img class="all-post-page-img" src="/media/persian-cat-placeholder.jpg" alt="image post"></a>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                        <div class="timestamp">
-                            <p>January 15, 2024</p>
-                        </div>
-                        <div class="caption">
-                            <h2><a class="display-6 link-body-emphasis mb-1 all-posts-heading" href="#">Kitten Lorem Ipsum</a></h2>
-                            <p class="text-secondary"> Scratch at door to be let outside, get let out then scratch at door immmediately after to be let back in meowsiers eat and than sleep on your face yet what a cat-ass-trophy!, but touch my tail, i shred your hand purrrr claws in the eye of the beholder yet catch mouse and gave it as a present. Gate keepers of hell lick the curtain just to be annoying but catasstrophe ignore the squirrels, you'll never catch them anyway. Unwrap toilet paper only use one corner of the litter box i vomit</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="mb-5">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <div class="post-type all-post-page-img">
-                            <a href="#"><img class="all-post-page-img" src="/media/wild-cat-placeholder.jpg" alt="image post"></a>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                        <div class="timestamp">
-                            <p>January 15, 2024</p>
-                        </div>
-                        <div class="caption">
-                            <h2><a class="display-6 link-body-emphasis mb-1 all-posts-heading" href="#">Kitten Lorem Ipsum</a></h2>
-                            <p class="text-secondary"> Scratch at door to be let outside, get let out then scratch at door immmediately after to be let back in meowsiers eat and than sleep on your face yet what a cat-ass-trophy!, but touch my tail, i shred your hand purrrr claws in the eye of the beholder yet catch mouse and gave it as a present. Gate keepers of hell lick the curtain just to be annoying but catasstrophe ignore the squirrels, you'll never catch them anyway. Unwrap toilet paper only use one corner of the litter box i vomit</p>
+                            <h2><a class="display-6 link-body-emphasis mb-1 all-posts-heading all-posts-title" href="<%= article.url %>"><%= article.title %></a></h2>
+                            <p class="text-secondary all-posts-text"><%= article.text %></p>
                         </div>
                     </div>
                 </div>
             </article>
         </div>
    </div> 
+<% }); %>
 
 <%- include("partials/footer.ejs") %>

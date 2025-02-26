@@ -2,7 +2,7 @@
     <div class="container mt-5 flex-grow-1 overflow-auto content">
         <div class="col-12 col-lg-7 mx-auto">
             <h4 class="mb-3">Create new blog post</h4>
-            <form class="needs-validation" novalidate="">
+            <form class="needs-validation" action="/link" method="post" enctype="multipart/form-data">
               <div class="row g-3">
 
                 <div class="col-12">
@@ -12,14 +12,16 @@
                     Please enter a valid title
                   </div>
                 </div>
-    
+                
                 <div class="col-12">
                   <label for="post-text" class="form-label">Post text</label>
-                  <input type="text" class="form-control create-post-text-field" style="height: 50vh" id="post-text" placeholder="Enter your text here..." required="">
+                  <textarea type="text" class="form-control create-post-text-field" style="height: 45vh" id="post-text" placeholder="Enter your text here..." required=""></textarea>
                   <div class="invalid-feedback">
                     Please enter your post text.
                   </div>
                 </div>
+
+                <input class="form-control" type="file" id="post-image" accept="image/png, image/jpeg">
 
               <button class="w-100 btn btn-warning btn-lg" type="submit">Continue to checkout</button>
             </form>

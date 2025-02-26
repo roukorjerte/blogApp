@@ -1,0 +1,17 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container mt-5 content">
+    <div class="col-12 col-lg-8 mx-auto">
+        <h1 class="mb-2"><%= article.title %></h1>
+        <P class="timestamp mb-4"><%= article.timestamp %></P>
+        <img src="<%= article.image %>" class="individual-article-img mb-4" alt="<%= article.title %>">
+        <p><%= article.text %></p>
+        <a href="/">
+            <button class="w-100 btn btn-warning btn-lg mb-5">
+                ← Back to homepage
+            </button>
+        </a>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
