@@ -1,73 +1,59 @@
 <%- include("partials/header.ejs") %>
+  <div class="mb-5">
     <div class="px-4 py-5 text-center mb-5 d-flex flex-column justify-content-end align-items-center" id="header-bg">
-        <h1 class="display-5 fw-bold text-body-emphasis text-white bold-custom">Welcome</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4 text-white">
-                This is a blog I made with bootstrap and my custom css. To make this web-site beautiful and to pick harmonical colours, I used "Client-First Template 12 - Blog" from Figma community. This is my first project with backend.
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-warning btn-lg px-4 gap-3 mb-5">Create new post</button>
-            </div>
-        </div>
+      <h1 class="display-5 fw-bold text-body-emphasis text-white bold-custom">Welcome</h1>
+      <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4 text-white">
+              This is a blog I made with bootstrap and my custom css. To make this web-site beautiful and to pick harmonical colours, I used "Client-First Template 12 - Blog" from Figma community. This is my first project with backend.
+          </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="button" class="btn btn-warning btn-lg px-4 gap-3 mb-5">Create new post</button>
+          </div>
+      </div>
     </div>
 
 
     <div class="container">
-        <div class="row g-5">
-            <div class="col-md-7">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Featured Posts
-                </h3>
-                <div>
-                    <img src="/media/black-cat-placeholder.jpg" alt="" class="featured-posts-img mb-3" />
-                    <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>
-                    <p class="text-secondary">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-                    <a href="/">
-                      <button type="button" class="btn btn-warning" >
-                        Read More >
-                      </button>
-                    </a>
-                </div>
-            </div>
+      <div class="row g-5">
+          <div class="col-md-7">
+              <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                  Featured Posts
+              </h3>
+              <div>
+                  <img src="<%= latestArticle.image %>" alt="featured posts image" class="featured-posts-img mb-3" />
+                  <h2 class="display-5 link-body-emphasis mb-1 all-posts-title"><%= latestArticle.title %></h2>
+                  <p class="text-secondary all-posts-text"><%= latestArticle.text %></p>
+                  <a href="<%= latestArticle.url %>">
+                    <button type="button" class="btn btn-warning" >
+                      Read More >
+                    </button>
+                  </a>
+              </div>
+          </div>
 
-            <div class="col-md-5">
-                <h3 class="pb-4 mb-2 fst-italic border-bottom">
-                    All Posts
-                </h3>
+          <div class="col-md-5">
+              <h3 class="pb-4 mb-2 fst-italic border-bottom">
+                  All Posts
+              </h3>
+              <div>
                 <div>
-                  <div>
-                    <ul class="list-unstyled">
+                  <ul class="list-unstyled">
+                    <% nextArticles.forEach(article => { %>
                       <li>
-                        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none" href="#">
-                            <img class="bd-placeholder-img all-posts-img" src="/media/close-cat-placeholder.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"> <!-- Укажите фиксированную ширину картинки -->
+                        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none" href="<%= article.url %>">
+                            <img class="bd-placeholder-img all-posts-img" src="<%= article.image %>" alt="<%= article.title %>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <div class="col-lg-8 break-word" style="flex-grow: 1;">
-                                <h6 class="mb-0 ">Example blog post title</h6>
-                                <small class="timestamp">January 15, 2024</small>
+                                <h6 class="mb-0 all-posts-title"><%= article.title %></h6>
+                                <small class="timestamp"><%= article.timestamp %></small>
                             </div>
                         </a>
                       </li>
-                      <li>
-                        <a class="break-word d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                          <img class="bd-placeholder-img all-posts-img" src="/media/persian-cat-placeholder.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></img>
-                          <div class="col-lg-8">
-                            <h6 class="mb-0 ">This is another blog post title</h6>
-                            <small class="timestamp">January 14, 2024</small>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                          <img class="bd-placeholder-img all-posts-img" src="/media/wild-cat-placeholder.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></img>
-                          <div class="col-lg-8 break-word">
-                            <h6 class="mb-0">Longer blog post title: This one has multiple lines!</h6>
-                            <small class="timestamp">January 13, 2024</small>
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                    <% }) %>
+                  </ul>
                 </div>
               </div>
+            </div>
     </div>
+  </div>
 
 <%- include("partials/footer.ejs") %>
