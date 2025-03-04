@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+<div class="container mt-5 flex-grow-1 overflow-auto content">
+    <div class="col-12 col-lg-7 mx-auto">
+        <h4 class="mb-3">Edit blog post</h4>
+
+        <form class="needs-validation" action="/edit/<%= article.id %>" method="post" enctype="multipart/form-data">
+            <div class="row g-3">
+                <div class="col-12">
+                    <label for="post-title" class="form-label">Post title</label>
+                    <input type="text" class="form-control" name="post-title" id="post-title" value="<%= article.title %>" required>
+                </div>
+
+                <div class="col-12">
+                    <label for="post-text" class="form-label">Post text</label>
+                    <textarea class="form-control" name="post-text" id="post-text" style="height: 45vh" required><%= article.text %></textarea>
+                </div>
+
+                <input class="form-control" type="file" name="post-image" id="post-image" accept="image/png, image/jpeg">
+                <small class="text-muted">Current image: <%= article.image ? article.image : "No image" %></small>
+
+                <button class="w-100 btn btn-warning btn-lg" type="submit">Save changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include("partials/footer.ejs") %>
