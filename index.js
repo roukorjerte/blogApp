@@ -5,10 +5,10 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/media"); // Сохраняем в папку public/media
+    cb(null, "public/media"); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // Уникальное имя файла
+    cb(null, Date.now() + "-" + file.originalname); 
   }
 });
 
@@ -30,13 +30,11 @@ app.get("/", (req, res) => {
   const sortedArticles = [...articles].sort((a, b) => b.id - a.id);
   const latestArticle = sortedArticles[0];
   const nextArticles = sortedArticles.slice(1, 4);
-
   res.render("index.ejs", { latestArticle, nextArticles });
 });
 
 app.get("/all-posts", (req, res) => {
   const sortedArticles = [...articles].sort((a, b) => b.id - a.id);
-
   res.render("allPosts.ejs", { articles: sortedArticles });
 });
 
@@ -44,48 +42,52 @@ app.get("/create", (req, res) => {
   res.render("create.ejs");
 });
 
-app.get("/articles/:id", (req, res) => {
-  const article = articles.find(a => a.id == req.params.id);
-  if (article) {
+app.get("/articles/:id", async (req, res) => {
+  try {
+    const articles = JSON.parse(await fs.promises.readFile("articles.json", "utf8"));
+    const article = articles.find(a => a.id == req.params.id);
+    if (article) {
       res.render("article", { article });
-  } else {
+    } else {
       res.status(404).send("Статья не найдена");
+    }
+  } catch (error) {
+    console.error("Ошибка при загрузке статьи:", error);
+    res.status(500).send("Ошибка сервера");
   }
 });
 
 
-app.post("/articles", upload.single("post-image"), (req, res) => {
-  // Читаем текущие статьи
-  const articles = JSON.parse(fs.readFileSync("articles.json", "utf8"));
 
-  // Находим максимальный id и увеличиваем на 1
-  const newId = articles.length > 0 ? Math.max(...articles.map(a => a.id)) + 1 : 1;
+app.post("/articles", upload.single("post-image"), async (req, res) => {
+  try {
+    const articles = JSON.parse(fs.readFileSync("articles.json", "utf8"));
+    const newId = articles.length > 0 ? Math.max(...articles.map(a => a.id)) + 1 : 1;
+    const newArticle = {
+      id: newId,
+      title: req.body["post-title"],
+      text: req.body["post-text"],
+      image: req.file ? `/media/${req.file.filename}` : "/media/kitten-placeholder.png",
+      url: `/articles/${newId}`,
+      timestamp: new Date().toLocaleDateString("ru-RU", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      })
+    };
 
-  // Создаем новый объект статьи
-  const newArticle = {
-    id: newId,
-    title: req.body["post-title"],
-    text: req.body["post-text"],
-    image: req.file ? `/media/${req.file.filename}` : "/media/placeholder.jpg",
-    url: `/articles/${newId}`,
-    timestamp: new Date().toLocaleDateString("ru-RU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    })
-  };
+    async function createArticle() {
+      articles.push(newArticle);
+      await fs.promises.writeFile("articles.json", JSON.stringify(articles, null, 2));
+    }
 
-  // Добавляем новую статью в массив
-  articles.push(newArticle);
-
-  // Записываем в articles.json
-  fs.writeFileSync("articles.json", JSON.stringify(articles, null, 2));
-
-  // Перенаправляем на страницу новой статьи
-  res.redirect(newArticle.url);
+    await createArticle();
+    res.redirect(newArticle.url);
+  } catch (error) {
+    console.error("Ошибка при создании статьи:", error);
+    res.status(500).send("Ошибка сервера");
+  }
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
