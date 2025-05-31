@@ -75,6 +75,6 @@ Make sure [Node.js](https://nodejs.org/) is installed.
 
 ## 💬 Feedback welcome!
 
-I'm always happy to hear suggestions, feedback or ideas! You can [open an issue](https://github.com/roukorjerte/Tamagochi/issues/new) or contact me directly.
+I'm always happy to hear suggestions, feedback or ideas! You can [open an issue](https://github.com/roukorjerte/blogApp/issues/new) or contact me directly.
 
 ---
